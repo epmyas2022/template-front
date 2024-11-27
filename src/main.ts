@@ -1,4 +1,5 @@
 import '@/ui/assets/main.css'
+import '@limonische/vue3-transition-expand/dist/style.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
