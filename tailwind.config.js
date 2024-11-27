@@ -10,6 +10,7 @@ export default {
         'custom-secondary': '#9C6FE4',
         'custom-tertiary': '#333437',
         'appbar-background': '#232429',
+        'appbar-text-unselected': '#D9CFFA',
       },
     },
   },
