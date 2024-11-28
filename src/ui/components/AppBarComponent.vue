@@ -1,5 +1,7 @@
 <template>
-  <div :class="`menu  flex gap-10 w-80 h-screen left-0 box-border overflow-hidden rounded-r-lg`">
+  <div
+    :class="`menu flex gap-10 w-80 h-screen left-0 box-border overflow-hidden rounded-r-lg sm:static fixed`"
+  >
     <div
       class="bg-gradient-to-br from-custom-primary to-custom-secondary/90 text-appbar-text-unselected w-full font-semibold flex flex-col justify-between"
     >
@@ -8,7 +10,8 @@
           <h1 v-show="isOpenMenu">Dashboard</h1>
 
           <button @click="toggleMenu">
-            <IconMenu2 />
+            <IconX v-if="device.xs" />
+            <IconMenu2 v-else />
           </button>
         </div>
 
@@ -21,14 +24,17 @@
 </template>
 
 <script setup lang="ts">
-import { IconMenu2 } from '@tabler/icons-vue'
-
+import { IconMenu2, IconX } from '@tabler/icons-vue'
 import { useAppBar } from './composables/appbar'
 import { type MenuItem } from './types/index'
 
-const { isOpenMenu, toggleMenu } = useAppBar()
+const { isOpenMenu, toggleMenu, device } = useAppBar()
 
 defineProps<{
   items: MenuItem[]
 }>()
+
+defineExpose({
+  toggleMenu,
+})
 </script>

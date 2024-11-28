@@ -1,9 +1,9 @@
 <template>
   <div class="flex h-screen">
-    <AppBarComponent :items="menu" />
+    <AppBarComponent :items="menu" ref="appbar" />
 
     <div class="flex flex-col flex-1 h-full overflow-hidden">
-      <NavBarComponent />
+      <NavBarComponent @open-menu="appbar?.toggleMenu" />
 
       <div class="flex justify-center h-full items-center">
         <RouterView />
@@ -15,6 +15,11 @@
 
 <script setup lang="ts">
 import type { MenuItem } from '@/ui/components/types'
+import { useTemplateRef } from 'vue'
+import type { ComponentExposed } from 'vue-component-type-helpers'
+
+const appbar = useTemplateRef<ComponentExposed<typeof AppBarComponent>>('appbar')
+
 import {
   IconLayoutDashboard,
   IconCertificate,
@@ -25,6 +30,7 @@ import {
   IconSchoolBell,
   IconCloudComputing,
 } from '@tabler/icons-vue'
+import type AppBarComponent from '@/ui/components/AppBarComponent.vue'
 
 const menu = [
   {

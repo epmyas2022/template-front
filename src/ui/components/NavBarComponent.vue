@@ -1,5 +1,8 @@
 <template>
-  <nav class="bg-appbar-background text-white p-2 h-16">
+  <nav class="bg-appbar-background text-white p-2 h-16 flex justify-between sm:block">
+    <button @click="$emit('openMenu')" :class="{ 'sm:hidden': true }">
+      <IconMenu2 />
+    </button>
     <div class="flex justify-end px-4">
       <div class="flex gap-10 items-center">
         <div class="flex gap-4">
@@ -36,5 +39,5 @@
 </template>
 
 <script setup lang="ts">
-import { IconBell, IconCategory2, IconAdjustments } from '@tabler/icons-vue'
+import { IconBell, IconCategory2, IconAdjustments, IconMenu2 } from '@tabler/icons-vue'
 </script>
