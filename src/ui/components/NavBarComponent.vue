@@ -25,13 +25,27 @@
           </button>
         </div>
         <div
-          class="w-10 h-10 rounded-full ring-custom-primary hover:ring-white ring-2 border-2 cursor-pointer"
+          class="w-10 h-10 rounded-full ring-custom-primary hover:ring-white ring-2 border-2 cursor-pointer relative group z-10"
         >
           <img
             src="https://i.pravatar.cc/300"
             alt="avatar"
-            class="w-full object-cover rounded-full"
+            class="w-full object-cover rounded-full aspect-[10/10]"
           />
+
+          <div class="absolute h-auto hidden group-hover:block right-0">
+            <div class="bg-appbar-background rounded-md mt-2 px-10 py-4">
+              <button class="text-white text-sm w-full py-1 flex gap-2 items-center">
+                <IconUser />
+                Profile
+              </button>
+
+              <button class="text-white text-sm w-full py-1 flex gap-2 items-center mt-2">
+                <IconLogout2 />
+                Logout
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -39,5 +53,12 @@
 </template>
 
 <script setup lang="ts">
-import { IconBell, IconCategory2, IconAdjustments, IconMenu2 } from '@tabler/icons-vue'
+import {
+  IconBell,
+  IconCategory2,
+  IconAdjustments,
+  IconMenu2,
+  IconUser,
+  IconLogout2,
+} from '@tabler/icons-vue'
 </script>
