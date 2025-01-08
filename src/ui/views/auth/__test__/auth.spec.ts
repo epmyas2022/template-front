@@ -5,7 +5,7 @@ describe('Auth', () => {
   test('should failed login user', async () => {
     await expect(async () => {
       await LoginUseCase.execute({ username: 'admin', password: 'admin123' })
-    }).rejects.toThrow('Invalid password')
+    }).rejects.toThrow('Invalid username or password')
   })
 
   test('should success login user', async () => {
