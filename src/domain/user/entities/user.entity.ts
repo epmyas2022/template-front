@@ -15,6 +15,15 @@ export class User {
   get password(): string {
     return this.user.password
   }
+
+  get id(): number {
+    return this.user.id
+  }
+
+  get name(): string {
+    return this.user.name
+  }
+
   toValue(): PrimitiveUser {
     return this.user
   }
