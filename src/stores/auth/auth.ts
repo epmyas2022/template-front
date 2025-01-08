@@ -12,16 +12,18 @@ export const useAuthStore = defineStore('auth', () => {
 
   function setToken(token: string) {
     auth.token = token
+    localStorage.setItem('token', token)
   }
 
   function logout() {
     auth.user = null
     auth.token = null
     auth.isLoggedIn = false
+    localStorage.removeItem('token')
   }
 
   function isAuthenticated() {
-    return auth.isLoggedIn
+    return auth.isLoggedIn || !!localStorage.getItem('token')
   }
 
   return {
