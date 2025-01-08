@@ -22,6 +22,7 @@ export function useLogin() {
 
       const { id, name, username } = user.toValue()
 
+      authStore.setToken('token_example')
       authStore.setUser({ id, name, username }, true)
 
       alertSuccess('Login success !')
