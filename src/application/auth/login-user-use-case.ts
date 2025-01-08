@@ -26,7 +26,9 @@ export class LoginUserUseCase extends UseCase<User, LoginUserDto> {
 
     if (!user) throw new Error('User not found')
 
-    const isValidPassword = await this.cryptService.compare(loginUserDto.password, user.password)
+    const testPassword = await this.cryptService.hash(user.password)
+
+    const isValidPassword = await this.cryptService.compare(loginUserDto.password, testPassword)
 
     if (!isValidPassword) throw new Error('Invalid username or password')
 
