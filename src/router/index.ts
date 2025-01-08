@@ -4,6 +4,7 @@ import DashboardView from '@/ui/views/dashboard/DashboardView.vue'
 import { accessGuard } from './guards/access.guard'
 import { pathsGuard } from './guards/paths.guard'
 import { applyGuards } from '@/helpers/utils'
+import { verifyGuard } from './guards/verify.guard'
 
 const router = applyGuards(
   createRouter({
@@ -25,7 +26,7 @@ const router = applyGuards(
       },
     ],
   }),
-  [accessGuard, pathsGuard],
+  [accessGuard, verifyGuard, pathsGuard],
 )
 
 export default router
