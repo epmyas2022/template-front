@@ -20,7 +20,6 @@ export class LoginUserUseCase extends UseCase<User, LoginUserDto> {
   }
 
   async execute(loginUserDto: LoginUserDto): Promise<User> {
-
     LoginValidation.validate(loginUserDto)
 
     const user = await this.userRepository.find(1)
@@ -29,7 +28,7 @@ export class LoginUserUseCase extends UseCase<User, LoginUserDto> {
 
     const isValidPassword = await this.cryptService.compare(loginUserDto.password, user.password)
 
-    if (!isValidPassword) throw new Error('Invalid password')
+    if (!isValidPassword) throw new Error('Invalid username or password')
 
     return user
   }
