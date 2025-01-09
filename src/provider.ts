@@ -1,15 +1,15 @@
 import { Container } from './helpers/container'
-import { LocalUserRepository } from './infrastructure/user/repositories/local-user.repository'
+import { LocalAuthRepository } from './infrastructure/user/repositories/local-auth.repository'
 import { LoginUserUseCase } from './application/auth/login-user-use-case'
 import { CryptService } from './domain/services/crypt.service'
 import { AuthCryptService } from './infrastructure/user/services/auth-crypt.service'
 import { TYPES } from './domain/shared/types'
-import { UserRespository } from '@/domain/user/repositories/user.repository'
+import { AuthRespository } from '@/domain/user/repositories/auth.repository'
 import { VerifyUserUseCase } from '@/application/verify-user/verify-user-use-case'
 
 const container = Container
   // Register dependencies
-  .register<UserRespository>(TYPES.USER_REPOSITORY, LocalUserRepository)
+  .register<AuthRespository>(TYPES.AUTH_REPOSITORY, LocalAuthRepository)
   .register<CryptService>(TYPES.CRYPT_SERVICE, AuthCryptService)
 
   // Auth

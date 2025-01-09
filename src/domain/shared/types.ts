@@ -1,6 +1,6 @@
 export const TYPES = {
   // Domain
-  USER_REPOSITORY: Symbol.for('UserRepository'),
+  AUTH_REPOSITORY: Symbol.for('AuthRepository'),
   LOGIN_USER_USE_CASE: Symbol.for('LoginUserUseCase'),
   CRYPT_SERVICE: Symbol.for('CryptService'),
   VERIFY_USER_USE_CASE: Symbol.for('VerifyUserUseCase'),

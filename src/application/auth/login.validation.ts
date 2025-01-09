@@ -3,6 +3,12 @@ import type { LoginUserDto } from './login-user.dto'
 
 export class LoginValidation {
   private constructor(private readonly value: LoginUserDto) {
+    if (!this.value.username || this.value.username === '')
+      throw new DtoException('Username is required')
+
+    if (!this.value.password || this.value.password === '')
+      throw new DtoException('Password is required')
+
     this.minPassword(6)
     this.maxPassword(20)
   }

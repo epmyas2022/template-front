@@ -2,36 +2,29 @@ import { Inject } from '@/dependencies/inject'
 import { Injectable } from '@/dependencies/injectable'
 import { TYPES } from '@/domain/shared/types'
 import { UseCase } from '@/domain/shared/use-case'
-import { User } from '@/domain/user/entities/user.entity'
-import { UserRespository } from '@/domain/user/repositories/user.repository'
-import type { CryptService } from '@/domain/services/crypt.service'
+import { AuthRespository } from '@/domain/user/repositories/auth.repository'
 import type { LoginUserDto } from './login-user.dto'
 import { LoginValidation } from './login.validation'
+import type { Login } from '@/domain/user/entities/login.entity'
 
 @Injectable()
-export class LoginUserUseCase extends UseCase<User, LoginUserDto> {
+export class LoginUserUseCase extends UseCase<Login, LoginUserDto> {
   public constructor(
-    @Inject(TYPES.USER_REPOSITORY)
-    private readonly userRepository: UserRespository,
-    @Inject(TYPES.CRYPT_SERVICE)
-    private readonly cryptService: CryptService,
+    @Inject(TYPES.AUTH_REPOSITORY)
+    private readonly authRepository: AuthRespository,
   ) {
     super()
   }
 
-  async execute(loginUserDto: LoginUserDto): Promise<User> {
+  async execute(loginUserDto: LoginUserDto): Promise<Login> {
     LoginValidation.validate(loginUserDto)
 
-    const user = await this.userRepository.find(1)
+    const { username, password } = loginUserDto
 
-    if (!user) throw new Error('User not found')
+    const auth = await this.authRepository.login(username, password)
 
-    const testPassword = await this.cryptService.hash(user.password)
+    if ('error' in auth) throw new Error(auth.error)
 
-    const isValidPassword = await this.cryptService.compare(loginUserDto.password, testPassword)
-
-    if (!isValidPassword) throw new Error('Invalid username or password')
-
-    return user
+    return auth
   }
 }

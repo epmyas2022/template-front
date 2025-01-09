@@ -3,20 +3,20 @@ import { Injectable } from '@/dependencies/injectable'
 import { TYPES } from '@/domain/shared/types'
 import { UseCaseSingle } from '@/domain/shared/use-case'
 import type { User } from '@/domain/user/entities/user.entity'
-import type { UserRespository } from '@/domain/user/repositories/user.repository'
+import type { AuthRespository } from '@/domain/user/repositories/auth.repository'
 
 @Injectable()
 export class VerifyUserUseCase extends UseCaseSingle<User> {
   public constructor(
-    @Inject(TYPES.USER_REPOSITORY)
-    private readonly userRepository: UserRespository,
+    @Inject(TYPES.AUTH_REPOSITORY)
+    private readonly authRepository: AuthRespository,
   ) {
     super()
   }
   async execute(): Promise<User> {
-    const user = await this.userRepository.find(1)
+    const user = await this.authRepository.verify()
 
-    if (!user) throw new Error('User not found')
+    if ('error' in user) throw new Error(user.error)
 
     return user
   }
