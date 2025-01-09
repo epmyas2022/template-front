@@ -33,8 +33,8 @@
             class="w-full object-cover rounded-full aspect-[10/10]"
           />
 
-          <div class="absolute h-auto hidden group-hover:block right-0">
-            <div class="bg-appbar-background rounded-md mt-2 px-10 py-4">
+          <div class="absolute h-auto hidden group-hover:block right-0 top-0">
+            <div class="bg-appbar-background rounded-md mt-11 px-10 py-4">
               <button class="text-white text-sm w-full py-1 flex gap-2 items-center">
                 <IconUser />
                 Profile
