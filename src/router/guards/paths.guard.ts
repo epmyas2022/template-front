@@ -1,5 +1,5 @@
 import type { Guard } from '@/domain/shared/interfaces'
-import type { PrimitivePath } from '@/domain/user/entities/path.entity'
+import { canAccess } from '@/helpers/utils'
 import { PathsUseCase } from '@/provider'
 import { useAuthStore } from '@/stores/auth/auth'
 import type {
@@ -8,15 +8,6 @@ import type {
   RouteLocationNormalizedLoadedGeneric,
 } from 'vue-router'
 
-function canAccess(paths: PrimitivePath[], to: string): boolean {
-  return paths.some((route) => {
-    if (route.children && route.children.length > 0) canAccess(route.children, to)
-
-    const regex = new RegExp(`^${route.path.replace(/:\w+/g, '([a-zA-Z0-9]+)')}$`)
-
-    return regex.test(to)
-  })
-}
 export class PathGuard implements Guard {
   async execute(
     to: RouteLocationNormalizedGeneric,
