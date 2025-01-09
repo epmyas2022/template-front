@@ -3,7 +3,7 @@ import Login from '@/ui/views/auth/LoginView.vue'
 import DashboardView from '@/ui/views/dashboard/DashboardView.vue'
 
 import { applyGuards } from '@/helpers/utils'
-import { AuthGuard } from './guards/access.guard'
+import { AuthGuard } from './guards/auth.guard'
 import { VerifyGuard } from './guards/verify.guard'
 import { PathGuard } from './guards/paths.guard'
 
