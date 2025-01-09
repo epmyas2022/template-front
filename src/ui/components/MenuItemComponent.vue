@@ -46,7 +46,9 @@ import { ref } from 'vue'
 import type { MenuItem } from './types'
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-vue'
 import { TransitionExpand } from '@limonische/vue3-transition-expand'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 defineProps<{
   isOpenMenu: boolean
   isChild?: boolean
@@ -59,7 +61,7 @@ const selectedItem = ref<number | null>(0)
 const actionLink = (link?: string, index?: number) => {
   selectedItem.value = index || 0
 
-  if (link && link != '#') return
+  if (link && link != '#') return router.push({ path: link })
 
   expandMenu.value = !expandMenu.value
 }
