@@ -20,10 +20,9 @@ export function useLogin() {
     try {
       const user = await LoginUseCase.execute(credentials)
 
-      const { id, name, username } = user.toValue()
+      const { token } = user.toValue()
 
-      authStore.setToken('token_example')
-      authStore.setUser({ id, name, username }, true)
+      authStore.setToken(token)
 
       alertSuccess('Login success !')
 
