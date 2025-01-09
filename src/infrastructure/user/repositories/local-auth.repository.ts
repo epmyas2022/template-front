@@ -10,7 +10,6 @@ export class LocalAuthRepository implements AuthRespository {
       id: 1,
       username: 'admin',
       name: 'Admin',
-      password: 'admin123',
     })
   }
   async login(username: string, password: string): Promise<Login | { error: string }> {

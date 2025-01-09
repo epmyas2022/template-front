@@ -2,7 +2,6 @@ export interface PrimitiveUser {
   id: number
   name: string
   username: string
-  password: string
 }
 
 export class User {
@@ -10,10 +9,6 @@ export class User {
 
   static create(user: PrimitiveUser): User {
     return new User(user)
-  }
-
-  get password(): string {
-    return this.user.password
   }
 
   get id(): number {
