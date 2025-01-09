@@ -24,7 +24,6 @@ export class PathGuard implements Guard {
     }
 
     if (!canAccess(paths, to.path)) return next({ name: 'NotFound' })
-
-    next()
+    else next()
   }
 }
