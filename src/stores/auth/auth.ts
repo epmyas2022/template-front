@@ -1,4 +1,4 @@
-import type { Auth, User } from '@/domain/shared/global/auth.type'
+import type { Auth, User } from '@/domain/shared/types'
 import { defineStore } from 'pinia'
 import { reactive } from 'vue'
 
