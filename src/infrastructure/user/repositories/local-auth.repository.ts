@@ -2,9 +2,21 @@ import { Injectable } from '@/dependencies/injectable'
 import { AuthRespository } from '@/domain/user/repositories/auth.repository'
 import { Login } from '@/domain/user/entities/login.entity'
 import { User } from '@/domain/user/entities/user.entity'
+import { Path } from '@/domain/user/entities/path.entity'
 
 @Injectable()
 export class LocalAuthRepository implements AuthRespository {
+  async paths(): Promise<Path[] | { error: string }> {
+    return [
+      new Path({
+        name: 'Dashboard',
+        description: 'Dashboard',
+        icon: 'dashboard',
+        path: '/',
+        title: 'Dashboard',
+      }),
+    ]
+  }
   async verify(): Promise<User | { error: string }> {
     return new User({
       id: 1,
