@@ -1,11 +1,12 @@
+import type { Guard } from '@/domain/shared/interfaces'
 import type { Router } from 'vue-router'
 
 import { useToast, type PluginOptions } from 'vue-toastification'
 
 const toast = useToast()
 
-export const applyGuards = (router: Router, guards: ((router: Router) => Router)[]) => {
-  guards.forEach((guard) => (router = guard(router)))
+export const applyGuards = (router: Router, guards: Guard[]) => {
+  guards.forEach((guard) => router.beforeEach((to, from, next) => guard.execute(to, from, next)))
   return router
 }
 

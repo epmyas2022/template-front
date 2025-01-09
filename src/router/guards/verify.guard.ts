@@ -1,9 +1,18 @@
-import type { Router } from 'vue-router'
+import type {
+  NavigationGuardNext,
+  RouteLocationNormalizedGeneric,
+  RouteLocationNormalizedLoadedGeneric,
+} from 'vue-router'
 import { useAuthStore } from '@/stores/auth/auth'
 import { VerifyAuthUseCase } from '@/provider'
+import type { Guard } from '@/domain/shared/interfaces'
 
-export function verifyGuard(router: Router): Router {
-  router.beforeEach(async (_to, _from, next) => {
+export class VerifyGuard implements Guard {
+  async execute(
+    to: RouteLocationNormalizedGeneric,
+    from: RouteLocationNormalizedLoadedGeneric,
+    next: NavigationGuardNext,
+  ): Promise<void> {
     try {
       const authStore = useAuthStore()
 
@@ -16,6 +25,5 @@ export function verifyGuard(router: Router): Router {
       console.log(error)
       next({ name: 'Login' })
     }
-  })
-  return router
+  }
 }

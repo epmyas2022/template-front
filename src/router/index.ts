@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/ui/views/auth/LoginView.vue'
 import DashboardView from '@/ui/views/dashboard/DashboardView.vue'
-import { accessGuard } from './guards/access.guard'
-import { pathsGuard } from './guards/paths.guard'
+
 import { applyGuards } from '@/helpers/utils'
-import { verifyGuard } from './guards/verify.guard'
+import { AuthGuard } from './guards/access.guard'
+import { VerifyGuard } from './guards/verify.guard'
+import { PathGuard } from './guards/paths.guard'
 
 const router = applyGuards(
   createRouter({
@@ -26,7 +27,7 @@ const router = applyGuards(
       },
     ],
   }),
-  [accessGuard, verifyGuard, pathsGuard],
+  [new AuthGuard(), new VerifyGuard(), new PathGuard()],
 )
 
 export default router
