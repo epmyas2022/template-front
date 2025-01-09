@@ -6,6 +6,7 @@ import { applyGuards } from '@/helpers/utils'
 import { AuthGuard } from './guards/auth.guard'
 import { VerifyGuard } from './guards/verify.guard'
 import { PathGuard } from './guards/paths.guard'
+import WelcomeView from '@/ui/views/welcome/WelcomeView.vue'
 
 const router = applyGuards(
   createRouter({
@@ -18,6 +19,13 @@ const router = applyGuards(
         meta: {
           requiresAuth: true,
         },
+        children: [
+          {
+            path: '/welcome',
+            name: 'Welcome',
+            component: WelcomeView,
+          },
+        ],
       },
 
       {
