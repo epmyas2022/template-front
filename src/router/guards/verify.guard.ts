@@ -9,8 +9,8 @@ import type { Guard } from '@/domain/shared/interfaces'
 
 export class VerifyGuard implements Guard {
   async execute(
-    to: RouteLocationNormalizedGeneric,
-    from: RouteLocationNormalizedLoadedGeneric,
+    _to: RouteLocationNormalizedGeneric,
+    _from: RouteLocationNormalizedLoadedGeneric,
     next: NavigationGuardNext,
   ): Promise<void> {
     try {
