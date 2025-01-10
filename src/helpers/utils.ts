@@ -15,6 +15,8 @@ export const canAccessPath = (paths: PrimitivePath[], to: string): boolean => {
   return paths.some((route) => {
     if (route.children && route.children.length > 0) return canAccessPath(route.children, to)
 
+    route.path = route.path.replace(/^#$/, '/')
+
     const regex = new RegExp(`^${route.path.replace(/:\w+/g, '([a-zA-Z0-9]+)')}$`)
 
     return regex.test(to)
