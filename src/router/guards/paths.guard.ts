@@ -16,10 +16,10 @@ export class PathGuard implements Guard {
   ): Promise<void> {
     const authStore = useAuthStore()
 
-    const paths = authStore.auth.paths
+    let paths = authStore.auth.paths
 
     if (paths.length === 0) {
-      const paths = await PathsUseCase.execute()
+      paths = await PathsUseCase.execute()
       authStore.setPaths(paths)
     }
 
