@@ -11,9 +11,9 @@ export const applyGuards = (router: Router, guards: Guard[]) => {
   return router
 }
 
-export const canAccess = (paths: PrimitivePath[], to: string): boolean => {
+export const canAccessPath = (paths: PrimitivePath[], to: string): boolean => {
   return paths.some((route) => {
-    if (route.children && route.children.length > 0) canAccess(route.children, to)
+    if (route.children && route.children.length > 0) return canAccessPath(route.children, to)
 
     const regex = new RegExp(`^${route.path.replace(/:\w+/g, '([a-zA-Z0-9]+)')}$`)
 

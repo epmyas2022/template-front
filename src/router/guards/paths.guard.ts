@@ -1,5 +1,5 @@
 import type { Guard } from '@/domain/shared/interfaces'
-import { canAccess } from '@/helpers/utils'
+import { canAccessPath } from '@/helpers/utils'
 import { PathsUseCase } from '@/provider'
 import { useAuthStore } from '@/stores/auth/auth'
 import type {
@@ -23,7 +23,7 @@ export class PathGuard implements Guard {
       authStore.setPaths(paths)
     }
 
-    if (!canAccess(paths, to.path)) return next({ name: 'NotFound' })
+    if (!canAccessPath(paths, to.path)) return next({ name: 'NotFound' })
     else next()
   }
 }
