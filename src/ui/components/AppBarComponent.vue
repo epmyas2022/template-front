@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="`menu flex gap-10 w-80 h-screen left-0 box-border overflow-hidden rounded-r-lg sm:static fixed z-50`"
+    :class="`menu flex gap-10 w-64 h-screen left-0 box-border overflow-hidden rounded-r-lg sm:static fixed z-50`"
   >
     <div
       class="bg-gradient-to-br from-custom-primary to-custom-secondary/90 text-appbar-text-unselected w-full font-semibold flex flex-col justify-between"
@@ -26,12 +26,12 @@
 <script setup lang="ts">
 import { IconMenu2, IconX } from '@tabler/icons-vue'
 import { useAppBar } from './composables/appbar'
-import { type MenuItem } from './types/index'
+import type { PrimitivePath } from '@/domain/user/entities/path.entity'
 
 const { isOpenMenu, toggleMenu, device } = useAppBar()
 
 defineProps<{
-  items: MenuItem[]
+  items: PrimitivePath[]
 }>()
 
 defineExpose({
