@@ -23,7 +23,7 @@ export class PathGuard implements Guard {
       authStore.setPaths(paths)
     }
 
-    if (!canAccessPath(paths, to.path)) return next({ name: 'NotFound' })
+    if (!canAccessPath(paths, to.path) && to.meta.requiresAuth) return next({ name: 'NotFound' })
     else next()
   }
 }
