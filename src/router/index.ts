@@ -7,6 +7,7 @@ import { AuthGuard } from './guards/auth.guard'
 import { VerifyGuard } from './guards/verify.guard'
 import { PathGuard } from './guards/paths.guard'
 import WelcomeView from '@/ui/views/welcome/WelcomeView.vue'
+import NotFoundView from '@/ui/views/errors/NotFoundView.vue'
 
 const router = applyGuards(
   createRouter({
@@ -32,6 +33,12 @@ const router = applyGuards(
         path: '/login',
         name: 'Login',
         component: Login,
+      },
+
+      {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: NotFoundView,
       },
     ],
   }),

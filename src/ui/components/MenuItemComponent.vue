@@ -12,10 +12,11 @@
           class="absolute left-0 bg-white h-7 w-1.5 rounded-r-lg"
         ></div>
       </TransitionExpand>
-      <button class="text-md w-full" @click="actionLink(item.link, index)">
-        <div class="flex gap-4">
-          <span>
-            <component :is="item.icon" />
+      <button class="text-md w-full" @click="actionLink(item, index)">
+        <div class="flex gap-4 items-center">
+          <span class="text-2xl">
+            <i :class="item.icon" v-if="typeof item.icon === 'string'"></i>
+            <component v-else :is="item.icon" />
           </span>
 
           <Transition name="fade">
@@ -43,25 +44,27 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { MenuItem } from './types'
 import { IconChevronDown, IconChevronUp } from '@tabler/icons-vue'
 import { TransitionExpand } from '@limonische/vue3-transition-expand'
 import { useRouter } from 'vue-router'
+import type { PrimitivePath } from '@/domain/user/entities/path.entity'
 
 const router = useRouter()
 defineProps<{
   isOpenMenu: boolean
   isChild?: boolean
-  items: MenuItem[]
+  items: PrimitivePath[]
 }>()
 
 const expandMenu = ref(false)
 const selectedItem = ref<number | null>(0)
 
-const actionLink = (link?: string, index?: number) => {
+const actionLink = (item: PrimitivePath, index?: number) => {
   selectedItem.value = index || 0
 
-  if (link && link != '#') return router.push({ path: link })
+  const { path: link, children } = item
+
+  if (link && !children) return router.push({ path: link })
 
   expandMenu.value = !expandMenu.value
 }

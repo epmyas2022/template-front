@@ -9,12 +9,44 @@ export class LocalAuthRepository implements AuthRespository {
   async paths(): Promise<Path[] | { error: string }> {
     return [
       new Path({
-        name: 'Dashboard',
-        description: 'Dashboard',
-        icon: 'dashboard',
-        path: '/',
         title: 'Dashboard',
+        icon: 'ti ti-layout-dashboard',
+        path: '#',
+        name: 'Dashboard',
+        description: 'Dashboard from local',
+        children: [
+          {
+            name: 'Students',
+            description: 'Students from local',
+            title: 'Students',
+            icon: 'ti ti-school',
+            path: '#',
+          },
+
+          {
+            name: 'Teachers',
+            description: 'Teachers from local',
+            title: 'Teachers',
+            icon: 'ti ti-bell-school',
+            path: '#',
+          },
+
+          {
+            name: 'Classes',
+            description: 'Classes from local',
+            title: 'Classes',
+            icon: 'ti ti-book',
+            path: '#',
+          },
+        ],
       }),
+      /*      new Path({
+        name: 'Welcome',
+        description: 'Welcome for test',
+        icon: 'ti ti-location-dollar',
+        path: '/welcome',
+        title: 'Dollar Location',
+      }), */
     ]
   }
   async verify(): Promise<User | { error: string }> {
