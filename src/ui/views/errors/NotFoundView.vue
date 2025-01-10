@@ -1,5 +1,7 @@
 <template>
-  <div class="flex gap-2 flex-wrap items-center justify-center h-dvh">
+  <div
+    class="flex gap-2 flex-wrap items-center justify-center h-dvh bg-gradient-to-tr from-appbar-background to-custom-background"
+  >
     <img src="../../assets/notfound.png" alt="404 not found" class="max-w-2xl" />
 
     <div class="flex flex-col gap-3 justify-center p-4 text-white">
