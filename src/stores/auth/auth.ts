@@ -4,7 +4,9 @@ import { defineStore } from 'pinia'
 import { reactive } from 'vue'
 
 export const useAuthStore = defineStore('auth', () => {
-  const auth = reactive({}) as Auth
+  const auth = reactive({
+    paths: [],
+  }) as Auth
 
   function setUser(user: User, isLoggedIn: boolean) {
     auth.user = user
