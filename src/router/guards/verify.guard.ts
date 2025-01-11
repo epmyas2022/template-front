@@ -16,6 +16,8 @@ export class VerifyGuard implements Guard {
     try {
       const authStore = useAuthStore()
 
+      if (authStore.auth.user) return next()
+
       const userVerify = await VerifyAuthUseCase.execute()
 
       authStore.setUser(userVerify.toValue(), true)

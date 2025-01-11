@@ -42,7 +42,7 @@ const router = applyGuards(
       },
     ],
   }),
-  [new AuthGuard(), new VerifyGuard(), new PathGuard()],
+  [new AuthGuard(), new PathGuard(), new VerifyGuard()],
 )
 
 export default router
