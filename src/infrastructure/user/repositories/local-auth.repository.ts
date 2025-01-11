@@ -40,13 +40,13 @@ export class LocalAuthRepository implements AuthRespository {
           },
         ],
       }),
-      /*      new Path({
+      new Path({
         name: 'Welcome',
         description: 'Welcome for test',
         icon: 'ti ti-location-dollar',
         path: '/welcome',
         title: 'Dollar Location',
-      }), */
+      }),
     ]
   }
   async verify(): Promise<User | { error: string }> {
