@@ -20,7 +20,7 @@
           </span>
 
           <Transition name="fade">
-            <span v-show="isOpenMenu" class="text-sm text-nowrap">{{ item.title }}</span>
+            <span v-show="isOpenMenu" class="text-md sm:text-sm text-nowrap">{{ item.title }}</span>
           </Transition>
 
           <div v-if="item.children && isOpenMenu" class="ml-auto">
