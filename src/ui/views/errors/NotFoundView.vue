@@ -3,7 +3,7 @@
     <div class="flex gap-2 flex-wrap items-center justify-center h-fit sm:h-full p-8">
       <div class="max-w-2xl">
         <img
-          src="../../assets/notfound.png"
+          src="../../assets/notfound.svg"
           alt="404 not found"
           class="object-cover w-full h-full"
         />
