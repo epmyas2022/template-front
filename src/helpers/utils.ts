@@ -17,7 +17,7 @@ export const canAccessPath = (paths: PrimitivePath[], to: string): boolean => {
 
     route.path = route.path.replace(/^#?$/, '/')
 
-    const regex = new RegExp(`^${route.path.replace(/:\w+/g, '([a-zA-Z0-9]+)')}$`)
+    const regex = new RegExp(`^${route.path.replace(/:\w+/g, '([a-zA-Z0-9]+)')}/?$`)
 
     return regex.test(to)
   })
