@@ -5,7 +5,7 @@ import { useDevice } from './device'
 
 export function useAppBar() {
   const isOpenMenu = ref(true)
-  const { device } = useDevice()
+  const { device, isMobile } = useDevice()
 
   const toggleMenu = () => {
     animateMenu()
@@ -15,8 +15,10 @@ export function useAppBar() {
   const animateMenu = () => {
     const minValue = device.value.xs ? '0px' : '4rem'
 
+    const value = isMobile() ? '18rem' : '16rem'
+
     gsap.to('.menu', {
-      width: !isOpenMenu.value ? '20rem' : minValue,
+      width: !isOpenMenu.value ? value : minValue,
       duration: 0.4,
       ease: 'power2.inOut',
     })
