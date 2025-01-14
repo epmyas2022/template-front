@@ -35,7 +35,10 @@
 
           <div class="absolute h-auto hidden group-hover:block right-0">
             <div class="bg-appbar-background rounded-md mt-2 px-10 py-4">
-              <button class="text-white text-sm w-full py-1 flex gap-2 items-center">
+              <button
+                class="text-white text-sm w-full py-1 flex gap-2 items-center"
+                @click="router.push('/profile')"
+              >
                 <IconUser />
                 Profile
               </button>
@@ -61,4 +64,8 @@ import {
   IconUser,
   IconLogout2,
 } from '@tabler/icons-vue'
+
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 </script>
