@@ -8,7 +8,6 @@
         <input
           v-bind="field"
           v-model="value"
-          :value="valueDefault"
           :autocomplete="autocomplete"
           class="bg-transparent outline-none w-full"
           :name="name"
@@ -37,7 +36,6 @@ import { Field, ErrorMessage } from 'vee-validate'
 defineProps<{
   placeholder: string
   autocomplete: string
-  valueDefault: string
   name: string
   type: 'text' | 'password' | 'email'
 }>()
