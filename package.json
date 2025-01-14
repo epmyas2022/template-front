@@ -25,6 +25,7 @@
     "reflect-metadata": "^0.2.2",
     "vee-validate": "^4.14.7",
     "vue": "^3.5.12",
+    "vue-final-modal": "^4.5.5",
     "vue-router": "^4.4.5",
     "vue-toastification": "^2.0.0-rc.5",
     "yup": "^1.4.0"
