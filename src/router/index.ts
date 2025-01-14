@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '@/ui/views/auth/LoginView.vue'
 import DashboardView from '@/ui/views/dashboard/DashboardView.vue'
 
 import { applyGuards } from '@/helpers/utils'
 import { AuthGuard } from './guards/auth.guard'
 import { VerifyGuard } from './guards/verify.guard'
 import { PathGuard } from './guards/paths.guard'
-import WelcomeView from '@/ui/views/welcome/WelcomeView.vue'
 import NotFoundView from '@/ui/views/errors/NotFoundView.vue'
+import RouterGlobal from '@/plugins/router-global'
+
+const routes = RouterGlobal()
 
 const router = applyGuards(
   createRouter({
@@ -20,21 +21,9 @@ const router = applyGuards(
         meta: {
           requiresAuth: true,
         },
-        children: [
-          {
-            path: '/welcome',
-            name: 'Welcome',
-            component: WelcomeView,
-          },
-        ],
+        children: [...routes.routesWithLayout],
       },
-
-      {
-        path: '/login',
-        name: 'Login',
-        component: Login,
-      },
-
+      ...routes.routes,
       {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',
