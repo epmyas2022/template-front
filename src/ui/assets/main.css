@@ -29,3 +29,67 @@ body {
 .fade-leave-to {
   opacity: 0;
 }
+
+.bounce-enter-active {
+  animation: bounceIn 0.5s;
+}
+
+.bounce-leave-active {
+  animation: bounceOut 0.5s;
+}
+
+.bounder-enter-active {
+  animation: bounderIn 0.5s;
+}
+
+.bounder-leave-active {
+  animation: bounderOut 0.5s;
+}
+
+@keyframes bounceOut {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounderIn {
+  0% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes bounderOut {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
