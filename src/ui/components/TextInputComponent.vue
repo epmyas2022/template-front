@@ -37,7 +37,7 @@ defineProps<{
   placeholder: string
   autocomplete: string
   name: string
-  type: 'text' | 'password'
+  type: 'text' | 'password' | 'email'
 }>()
 
 const value = defineModel<string>()
