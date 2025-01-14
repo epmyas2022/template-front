@@ -4,7 +4,7 @@ export default function RouterGlobal(): {
   routes: RouteRecordRaw[]
   routesWithLayout: RouteRecordRaw[]
 } {
-  const modules = import.meta.glob('../ui/views/**/router/*.ts', { eager: true })
+  const modules = import.meta.glob('@/ui/views/**/router/*.ts', { eager: true })
 
   if (!modules) return { routes: [], routesWithLayout: [] }
 
