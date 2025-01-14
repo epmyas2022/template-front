@@ -13,6 +13,7 @@ export class PathGuard implements Guard {
     to: RouteLocationNormalizedGeneric,
     _from: RouteLocationNormalizedLoadedGeneric,
     next: NavigationGuardNext,
+    except: boolean,
   ): Promise<void> {
     const authStore = useAuthStore()
 
@@ -23,7 +24,8 @@ export class PathGuard implements Guard {
       authStore.setPaths(paths)
     }
 
-    if (!canAccessPath(paths, to.path) && to.meta.requiresAuth) return next({ name: 'NotFound' })
+    if (!canAccessPath(paths, to.path) && to.meta.requiresAuth && !except)
+      return next({ name: 'NotFound' })
     else next()
   }
 }

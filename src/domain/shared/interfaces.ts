@@ -9,5 +9,6 @@ export interface Guard {
     to: RouteLocationNormalizedGeneric,
     from: RouteLocationNormalizedLoadedGeneric,
     next: NavigationGuardNext,
+    except: boolean,
   ): void
 }

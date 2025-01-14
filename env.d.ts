@@ -15,5 +15,7 @@ interface ImportMeta {
 declare module 'vue-router' {
   interface RouteMeta {
     requiresAuth?: boolean
+    withLayoutDashboard?: boolean
+    exceptGuards?: string[]
   }
 }
