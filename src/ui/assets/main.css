@@ -35,7 +35,7 @@ body {
 }
 
 .bounce-leave-active {
-  animation: bounceOut 0.5s;
+  animation: bounceOut 0.3s;
 }
 
 .bounder-enter-active {
