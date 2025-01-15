@@ -8,7 +8,7 @@ import { Path } from '@/domain/user/entities/path.entity'
 export class LocalAuthRepository implements AuthRespository {
   async paths(): Promise<Path[] | { error: string }> {
     return [
-      new Path({
+      Path.create({
         title: 'Dashboard',
         icon: 'ti ti-layout-dashboard',
         path: '#',
@@ -40,7 +40,7 @@ export class LocalAuthRepository implements AuthRespository {
           },
         ],
       }),
-      new Path({
+      Path.create({
         name: 'Welcome',
         description: 'Welcome for test',
         icon: 'ti ti-location-dollar',
@@ -54,6 +54,10 @@ export class LocalAuthRepository implements AuthRespository {
       id: 1,
       username: 'admin',
       name: 'Admin',
+      lastname: 'Admin',
+      email: 'admin@gmail.com',
+      avatar: 'https://i.pravatar.cc/400?img=8',
+      phone: '6959-5999',
     })
   }
   async login(username: string, password: string): Promise<Login | { error: string }> {
