@@ -6,10 +6,12 @@
 
     <ModalComponent ref="profileModal" width="23rem">
       <div class="mb-4 grid place-items-center">
-        <AvatarComponent :size="4"></AvatarComponent>
+        <AvatarComponent :size="4" :url="authStore.auth.user?.avatar"></AvatarComponent>
 
-        <h1 class="text-white text-lg font-bold my-1">John Doe</h1>
-        <p class="text-gray-300">@johnuser</p>
+        <h1 class="text-white text-lg font-bold my-1">
+          {{ `${authStore.auth.user?.name} ${authStore.auth.user?.lastname}` }}
+        </h1>
+        <p class="text-gray-300">@{{ authStore.auth.user?.username }}</p>
       </div>
       <div class="flex flex-col gap-3">
         <div class="flex gap-3 sm:items-center flex-col sm:flex-row">
@@ -18,12 +20,14 @@
             name="name"
             autocomplete="off"
             placeholder="Name"
+            v-model="user.name"
             class="text-white"
           >
           </TextInputComponent>
 
           <TextInputComponent
             type="text"
+            v-model="user.lastname"
             name="lastname"
             autocomplete="off"
             placeholder="Lastname"
@@ -37,6 +41,7 @@
             type="text"
             name="username"
             autocomplete="off"
+            v-model="user.username"
             placeholder="Username"
             class="text-white"
           >
@@ -46,6 +51,7 @@
             type="text"
             name="phone"
             autocomplete="off"
+            v-model="user.phone"
             placeholder="Phone"
             class="text-white"
           >
@@ -54,6 +60,7 @@
 
         <TextInputComponent
           type="email"
+          v-model="user.email"
           name="email"
           autocomplete="off"
           placeholder="Email"
@@ -87,7 +94,7 @@
             <IconAdjustments />
           </button>
         </div>
-        <AvatarComponent>
+        <AvatarComponent :url="authStore.auth.user?.avatar">
           <div class="absolute h-auto hidden group-hover:block right-0">
             <div class="bg-appbar-background rounded-md mt-2 px-10 py-4">
               <button
@@ -119,10 +126,16 @@ import {
   IconUser,
   IconLogout2,
 } from '@tabler/icons-vue'
-import { useTemplateRef } from 'vue'
+import { reactive, useTemplateRef } from 'vue'
 import { type ComponentExposed } from 'vue-component-type-helpers'
 import type ModalComponent from './ModalComponent.vue'
 import TextInputComponent from './TextInputComponent.vue'
 import AvatarComponent from './AvatarComponent.vue'
 const profileModal = useTemplateRef<ComponentExposed<typeof ModalComponent>>('profileModal')
+
+import { useAuthStore } from '@/stores/auth/auth'
+
+const authStore = useAuthStore()
+
+const user = reactive({ ...authStore.auth.user })
 </script>
