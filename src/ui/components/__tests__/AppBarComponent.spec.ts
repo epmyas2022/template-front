@@ -1,31 +1,20 @@
 import { it, describe, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import type { MenuItem } from '../types'
+import { Path, type PrimitivePath } from '@/domain/user/entities/path.entity'
 
-import { IconDashboard } from '@tabler/icons-vue'
 import AppBarComponent from '../AppBarComponent.vue'
 import MenuItemComponent from '../MenuItemComponent.vue'
 
 describe('AppBarComponent', () => {
   const items = [
-    {
+    Path.create({
       title: 'Dashboard',
-      link: '#',
-      icon: IconDashboard,
-      children: [
-        {
-          title: 'Students',
-          icon: IconDashboard,
-          link: '/students',
-        },
-      ],
-    },
-    {
-      title: 'Certificados',
-      link: '/certificates',
-      icon: IconDashboard,
-    },
-  ] as MenuItem[]
+      icon: 'ti ti-layout-dashboard',
+      path: '#',
+      name: 'Dashboard',
+      description: 'Dashboard from local',
+    }).toValue(),
+  ] as PrimitivePath[]
 
   it('should render the AppBarComponent', () => {
     const wrapper = mount(AppBarComponent, {
