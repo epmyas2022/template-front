@@ -1,4 +1,5 @@
 import type { PrimitivePath } from '../user/entities/path.entity'
+import type { PrimitiveUser } from '../user/entities/user.entity'
 
 export const TYPES = {
   // Domain
@@ -12,14 +13,8 @@ export const TYPES = {
   DEPENDENCY_VALIDATION: Symbol.for('DependencyValidation'),
 }
 
-export type User = {
-  id: number
-  name: string
-  username: string
-}
-
 export type Auth = {
-  user: User | null
+  user: PrimitiveUser | Partial<PrimitiveUser>
   paths: PrimitivePath[] | []
   token: string | null
   isLoggedIn: boolean
