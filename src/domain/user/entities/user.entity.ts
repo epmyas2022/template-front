@@ -1,7 +1,11 @@
 export interface PrimitiveUser {
   id: number
   name: string
+  lastname: string
   username: string
+  email: string
+  phone?: string
+  avatar?: string
 }
 
 export class User {
@@ -17,6 +21,14 @@ export class User {
 
   get name(): string {
     return this.user.name
+  }
+
+  get username(): string {
+    return this.user.username
+  }
+
+  get email(): string {
+    return this.user.email
   }
 
   toValue(): PrimitiveUser {
