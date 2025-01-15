@@ -3,7 +3,7 @@
     <li
       v-for="(item, index) in items"
       :key="index"
-      :class="`${index == selectedItem ? 'text-white' : 'text-gray-200'}
+      :class="`${index == selectedItem ? 'text-white' : 'text-gray-100'}
       hover:text-white cursor-pointer relative px-4`"
     >
       <TransitionExpand>
