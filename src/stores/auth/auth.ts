@@ -1,4 +1,5 @@
-import type { Auth, User } from '@/domain/shared/types'
+import type { Auth } from '@/domain/shared/types'
+import type { PrimitiveUser } from '@/domain/user/entities/user.entity'
 import type { PrimitivePath } from '@/domain/user/entities/path.entity'
 import { defineStore } from 'pinia'
 import { reactive } from 'vue'
@@ -8,7 +9,7 @@ export const useAuthStore = defineStore('auth', () => {
     paths: [],
   }) as Auth
 
-  function setUser(user: User, isLoggedIn: boolean) {
+  function setUser(user: PrimitiveUser, isLoggedIn: boolean) {
     auth.user = user
     auth.isLoggedIn = isLoggedIn
   }
@@ -23,7 +24,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   function logout() {
-    auth.user = null
+    auth.user = {}
     auth.token = null
     auth.isLoggedIn = false
     auth.paths = []
