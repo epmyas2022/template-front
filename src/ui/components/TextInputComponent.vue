@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Field :name="name" v-slot="{ errors, field }">
+    <Field :name="name" v-slot="{ errors, field }" v-model="value">
       <div
         :class="`border-b ${!!errors.length ? 'border-red-300' : 'border-gray-500 hover:border-white'}
       px-2 leading-10  flex gap-2 w-full`"
