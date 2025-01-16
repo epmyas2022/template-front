@@ -1,5 +1,6 @@
 <template>
   <VueFinalModal
+    @closed="$emit('closed')"
     class="flex justify-center items-center w-full"
     :content-class="`w-full  md:w-fit ${isMobile() && fullScreen ? 'h-dvh' : 'p-2'}`"
     :content-transition="'bounce'"
@@ -44,6 +45,9 @@ defineProps<{
     | 'bounder'
 }>()
 
+defineEmits<{
+  closed: () => void
+}>()
 const device = useDevice()
 
 const { isMobile } = device
