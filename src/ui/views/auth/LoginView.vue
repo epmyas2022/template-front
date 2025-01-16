@@ -11,7 +11,7 @@ const { login, credentials, loginSchema } = useLogin()
     <div
       class="bg-custom-background w-full h-full text-white flex flex-col justify-evenly sm:items-center p-6"
     >
-      <Form class="flex flex-col gap-10  md:w-96" @submit="login" :validation-schema="loginSchema">
+      <Form class="flex flex-col gap-10 md:w-96" @submit="login" :validation-schema="loginSchema">
         <div>
           <h1 class="text-4xl font-bold">Login</h1>
           <p class="mt-2 text-gray-400">Enter your account details</p>
@@ -35,9 +35,7 @@ const { login, credentials, loginSchema } = useLogin()
           ></TextInputComponent>
 
           <a href="#" class="text-gray-400 mt-2 text-sm">Forgot password?</a>
-          <button class="bg-custom-primary text-white p-2 rounded-md mt-5" type="submit">
-            Login
-          </button>
+          <button class="btn mt-5" type="submit">Login</button>
         </div>
       </Form>
 
@@ -61,7 +59,7 @@ const { login, credentials, loginSchema } = useLogin()
         </h1>
         <p class="mt-2">Login to access your account</p>
       </div>
-      <img class="z-20 w-3/4"  src="../../assets/ilustration.svg" alt="logo" />
+      <img class="z-20 w-3/4" src="../../assets/ilustration.svg" alt="logo" />
     </div>
   </div>
 </template>

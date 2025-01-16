@@ -68,9 +68,7 @@
         >
         </TextInputComponent>
 
-        <div class="mt-4">
-          <button class="bg-custom-primary text-white w-full py-2 rounded-md">Save</button>
-        </div>
+        <button class="btn mt-4">Save</button>
       </div>
     </ModalComponent>
     <div class="flex justify-end px-4">
