@@ -1,4 +1,4 @@
-import { Plugin } from 'vite'
+import { loadEnv, Plugin, type ConfigEnv } from 'vite'
 import * as yup from 'yup'
 
 export * as Schema from 'yup'
@@ -6,13 +6,14 @@ export * as Schema from 'yup'
 export function ValidateEnv(schema: yup.ObjectShape) {
   return {
     name: 'environment-validator',
-
-    config() {
-      const env = process.env
+    config(_config, env: ConfigEnv) {
+      const enviroments = loadEnv(env.mode, process.cwd())
 
       const schemaShape = yup.object().shape(schema)
 
-      schemaShape.validateSync(env)
+      schemaShape.validateSync(enviroments, {
+        strict: true,
+      })
     },
   } as Plugin
 }
