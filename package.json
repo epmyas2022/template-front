@@ -18,7 +18,6 @@
     "@limonische/vue3-transition-expand": "^2.0.2",
     "@tabler/icons-vue": "^3.22.0",
     "@vee-validate/joi": "^4.14.7",
-    "bcrypt-ts": "^5.0.3",
     "gsap": "^3.12.5",
     "inversify": "^6.1.4",
     "pinia": "^2.2.6",
