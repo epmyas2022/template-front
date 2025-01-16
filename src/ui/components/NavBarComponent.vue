@@ -99,7 +99,12 @@
             <div class="bg-appbar-background rounded-md mt-2 px-10 py-4">
               <button
                 class="text-white text-sm w-full py-1 flex gap-2 items-center"
-                @click="profileModal?.open()"
+                @click="
+                  () => {
+                    profileModal?.open()
+                    user = { ...authStore.auth.user }
+                  }
+                "
               >
                 <IconUser />
                 Profile
@@ -131,11 +136,12 @@ import { type ComponentExposed } from 'vue-component-type-helpers'
 import type ModalComponent from './ModalComponent.vue'
 import TextInputComponent from './TextInputComponent.vue'
 import AvatarComponent from './AvatarComponent.vue'
-const profileModal = useTemplateRef<ComponentExposed<typeof ModalComponent>>('profileModal')
-
 import { useAuthStore } from '@/stores/auth/auth'
+import type { PrimitiveUser } from '@/domain/user/entities/user.entity'
+
+const profileModal = useTemplateRef<ComponentExposed<typeof ModalComponent>>('profileModal')
 
 const authStore = useAuthStore()
 
-const user = reactive({ ...authStore.auth.user })
+const user = reactive({} as Partial<PrimitiveUser>)
 </script>
