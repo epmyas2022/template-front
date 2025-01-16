@@ -18,3 +18,11 @@ export type Auth = {
   token: string | null
   isLoggedIn: boolean
 }
+
+export interface HttpClient {
+  get(url: string, data: unknown, config?: object): Promise<unknown>
+  post(url: string, data: unknown, config?: object): Promise<unknown>
+  delete(url: string, config?: object): Promise<unknown>
+  update(url: string, data: unknown, config?: object): Promise<unknown>
+  patch(url: string, data: unknown, config?: object): Promise<unknown>
+}
