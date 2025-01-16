@@ -1,9 +1,9 @@
 <template>
   <div
-    :class="`menu flex gap-10 md:w-64 w-72 h-screen left-0 box-border overflow-hidden rounded-r-lg sm:static fixed z-50`"
+    :class="`menu flex gap-10 md:w-64 w-4/5 h-screen left-0 box-border overflow-hidden rounded-r-lg sm:static fixed z-50`"
   >
     <div
-      class="bg-gradient-to-br from-custom-primary to-custom-secondary/90 text-appbar-text-unselected w-full font-semibold flex flex-col justify-between"
+      class="bg-gradient-to-br from-custom-primary to-purple-light text-appbar-text-unselected w-full font-semibold flex flex-col justify-between"
     >
       <div>
         <div class="flex justify-between items-center p-4 my-2 text-white font-bold text-2xl h-20">

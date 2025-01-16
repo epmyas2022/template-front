@@ -15,7 +15,7 @@ export function useAppBar() {
   const animateMenu = () => {
     const minValue = device.value.xs ? '0px' : '4rem'
 
-    const value = isMobile() ? '18rem' : '16rem'
+    const value = isMobile() ? '80%' : '16rem'
 
     gsap.to('.menu', {
       width: !isOpenMenu.value ? value : minValue,
