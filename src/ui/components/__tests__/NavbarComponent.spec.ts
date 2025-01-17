@@ -8,6 +8,7 @@ describe('NavbarComponent', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
   })
+
   it('should render the NavbarComponent', () => {
     const wrapper = mount(NavBarComponent, {
       global: {
@@ -16,7 +17,38 @@ describe('NavbarComponent', () => {
         },
       },
     })
-
     expect(wrapper.findComponent(NavBarComponent).exists()).toBe(true)
+  })
+
+  it('should render the ModalComponent', async () => {
+    expect(ModalComponent).toBeDefined()
+  })
+
+  it('should render the modal component open', async () => {
+    const wrapper = mount(ModalComponent, {
+      global: {
+        stubs: {
+          teleport: false,
+        },
+      },
+      props: {
+        title: 'Create Account',
+        modelValue: true,
+      },
+      slots: {
+        default: `<p>Test account slot</p>`,
+      },
+    })
+    const modal = wrapper.findComponent(ModalComponent)
+
+    await modal.vm.$emit('update:modelValue', true)
+
+    const html = document.body.innerHTML
+
+    const title = /<h1.*>Create Account<\/h1>/.test(html)
+
+    const content = /<p.*>Test account slot<\/p>/.test(html)
+
+    expect(title && content).toBe(true)
   })
 })
