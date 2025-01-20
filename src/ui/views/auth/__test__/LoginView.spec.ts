@@ -26,20 +26,34 @@ describe('LoginView', () => {
     vi.clearAllMocks()
   })
 
-  test('should attempt to login error of fields', async () => {
-    render(LoginView)
+  const attemptLogin = async (user?: string, pass?: string) => {
+    if (user) {
+      const username = screen.getByPlaceholderText('Username')
 
-    const username = screen.getByPlaceholderText('Username')
+      expect(username).toBeDefined()
 
-    expect(username).toBeDefined()
+      await fireEvent.update(username, user)
+    }
 
-    await fireEvent.update(username, 'admin')
+    if (pass) {
+      const password = screen.getByPlaceholderText('Password')
+
+      expect(password).toBeDefined()
+
+      await fireEvent.update(password, pass)
+    }
 
     const submit = screen.getByRole('button', { name: /Login/i })
 
     expect(submit).toBeDefined()
 
     await fireEvent.click(submit)
+  }
+
+  test('should attempt to login error of fields', async () => {
+    render(LoginView)
+
+    await attemptLogin('admin')
 
     await screen.findByText('password is a required field')
   })
@@ -47,23 +61,7 @@ describe('LoginView', () => {
   test('should attempt to login success', async () => {
     render(LoginView)
 
-    const username = screen.getByPlaceholderText('Username')
-
-    expect(username).toBeDefined()
-
-    await fireEvent.update(username, 'admin')
-
-    const password = screen.getByPlaceholderText('Password')
-
-    expect(password).toBeDefined()
-
-    await fireEvent.update(password, 'admin123')
-
-    const submit = screen.getByRole('button', { name: /Login/i })
-
-    expect(submit).toBeDefined()
-
-    await fireEvent.click(submit)
+    await attemptLogin('admin', 'admin123')
 
     await waitFor(() => {
       expect(mocks.alertSuccess).toHaveBeenCalledWith('Login success !')
@@ -73,23 +71,7 @@ describe('LoginView', () => {
   test('should attempt to login error of credentials', async () => {
     render(LoginView)
 
-    const username = screen.getByPlaceholderText('Username')
-
-    expect(username).toBeDefined()
-
-    await fireEvent.update(username, 'admin')
-
-    const password = screen.getByPlaceholderText('Password')
-
-    expect(password).toBeDefined()
-
-    await fireEvent.update(password, 'admin1234')
-
-    const submit = screen.getByRole('button', { name: /Login/i })
-
-    expect(submit).toBeDefined()
-
-    await fireEvent.click(submit)
+    await attemptLogin('admin', 'admin1234')
 
     await waitFor(() => {
       expect(mocks.alertError).toHaveBeenCalled()
