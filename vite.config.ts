@@ -11,7 +11,7 @@ export default defineConfig({
     vue(),
     vueDevTools(),
     ValidateEnv({
-      VITE_BASE_URL: Schema.string().optional(),
+      VITE_BASE_URL: Schema.string().url().optional(),
     }),
   ],
   optimizeDeps: {
