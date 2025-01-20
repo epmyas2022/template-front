@@ -2,15 +2,15 @@ import { onMounted, onUnmounted, ref } from 'vue'
 
 export function useDevice() {
   const devices = () => {
-    const x = window.innerWidth
+    const screenWidth = window.innerWidth
 
     return {
-      xs: x < 600,
-      sm: x >= 600 && x <= 960,
-      md: x > 960 && x <= 1280,
-      lg: x > 1280 && x <= 1920,
-      xl: x > 1920 && x <= 2560,
-      xxl: x > 2560,
+      xs: screenWidth < 600,
+      sm: screenWidth >= 600 && screenWidth <= 960,
+      md: screenWidth > 960 && screenWidth <= 1280,
+      lg: screenWidth > 1280 && screenWidth <= 1920,
+      xl: screenWidth > 1920 && screenWidth <= 2560,
+      xxl: screenWidth > 2560,
     }
   }
 
