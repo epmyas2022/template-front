@@ -1,4 +1,4 @@
-import { it, describe, expect } from 'vitest'
+import { it, describe, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { Path, type PrimitivePath } from '@/domain/user/entities/path.entity'
 
@@ -6,6 +6,12 @@ import AppBarComponent from '../AppBarComponent.vue'
 import MenuItemComponent from '../MenuItemComponent.vue'
 
 describe('AppBarComponent', () => {
+  vi.mock('vue-router', () => ({
+    useRouter: () => ({
+      push: vi.fn(),
+    }),
+  }))
+
   const items = [
     Path.create({
       title: 'Dashboard',
