@@ -8,6 +8,10 @@ export const TYPES = {
   VERIFY_USER_USE_CASE: Symbol.for('VerifyUserUseCase'),
   PATHS_USER_USE_CASE: Symbol.for('PathsUserUseCase'),
 
+  //Services
+
+  HTTP_CLIENT_SERVICE: Symbol.for('HttpClientService'),
+
   // External dependencies
   DEPENDENCY_VALIDATION: Symbol.for('DependencyValidation'),
 }
@@ -17,12 +21,4 @@ export type Auth = {
   paths: PrimitivePath[] | []
   token: string | null
   isLoggedIn: boolean
-}
-
-export interface HttpClient {
-  get(url: string, data: unknown, config?: object): Promise<unknown>
-  post(url: string, data: unknown, config?: object): Promise<unknown>
-  delete(url: string, config?: object): Promise<unknown>
-  update(url: string, data: unknown, config?: object): Promise<unknown>
-  patch(url: string, data: unknown, config?: object): Promise<unknown>
 }

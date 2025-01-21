@@ -1,17 +1,19 @@
-import type { HttpClient } from '@/domain/shared/types'
 import { Http, type HttpInstance } from '@/dependencies/http'
 import {
   errorRequestInterceptor,
   responseRequestInterceptor,
-} from './interceptors/request.interceptor'
-import { responseInterceptor } from './interceptors/response.interceptor'
+} from '@/helpers/interceptors/request.interceptor'
+import { responseInterceptor } from '@/helpers/interceptors/response.interceptor'
+import type { HttpClientService } from '@/domain/services/http-client.service'
+import { Injectable } from '@/dependencies/injectable'
 
-export class HttpClientApi implements HttpClient {
+@Injectable()
+export class HttpClientApiService implements HttpClientService {
   private readonly httpInstance: HttpInstance
 
   constructor() {
     this.httpInstance = Http.default.create({
-      baseURL: import.meta.env.VITE_BASE_URL || 'http://localhost:8000',
+      baseURL: import.meta.env.VITE_BASE_URL || 'http://127.0.0.1:8000',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
@@ -22,20 +24,19 @@ export class HttpClientApi implements HttpClient {
     this.httpInstance.interceptors.request.use(responseRequestInterceptor, errorRequestInterceptor)
     this.httpInstance.interceptors.response.use(responseInterceptor, errorRequestInterceptor)
   }
-
-  get<T>(url: string, data: unknown, config?: object): Promise<T> {
+  get<T, D>(url: string, data: D, config?: object): Promise<T> {
     return this.httpInstance.get(url, { params: data, ...config })
   }
-  post(url: string, data: unknown, config?: object): Promise<unknown> {
+  post<T, D>(url: string, data: D, config?: object): Promise<T> {
     return this.httpInstance.post(url, data, config)
   }
-  delete(url: string, config?: object): Promise<unknown> {
+  delete<T>(url: string, config?: object): Promise<T> {
     return this.httpInstance.delete(url, config)
   }
-  update(url: string, data: unknown, config?: object): Promise<unknown> {
+  update<T, D>(url: string, data: D, config?: object): Promise<T> {
     return this.httpInstance.put(url, data, config)
   }
-  patch(url: string, data: unknown, config?: object): Promise<unknown> {
+  patch<T, D>(url: string, data: D, config?: object): Promise<T> {
     return this.httpInstance.patch(url, data, config)
   }
 }
